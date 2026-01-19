@@ -4,14 +4,12 @@ import { ConfigService } from '@nestjs/config';
 import { CreateBlockyfyFormSubmissionDto } from 'src/dto/create-blockyfy-form-submission.dto';
 
 /**
- * Contact data for Brevo CRM
+ * Contact data for Brevo CRM (Nextsense)
  */
 export interface BrevoContactData {
   email: string;
   firstName: string;
   lastName: string;
-  interests: string[];
-  budget: string;
   message?: string;
   newsletterSubscribed: boolean;
 }
@@ -160,7 +158,7 @@ export class BrevoService {
   }
 
   /**
-   * Builds the Brevo contact payload
+   * Builds the Brevo contact payload for Nextsense
    */
   private buildNextsenseContactPayload(
     contactData: BrevoContactData,
@@ -171,8 +169,6 @@ export class BrevoService {
     contact.attributes = {
       FIRSTNAME: contactData.firstName,
       LASTNAME: contactData.lastName,
-      INTERESTS: contactData.interests.join(', '),
-      BUDGET: contactData.budget,
       MESSAGE: contactData.message || '',
     } as any;
 
@@ -295,7 +291,7 @@ export class BrevoService {
   }
 
   /**
-   * Updates an existing contact in Brevo
+   * Updates an existing Nextsense contact in Brevo
    */
   private async updateExistingContact(
     contactData: BrevoContactData,
@@ -305,8 +301,6 @@ export class BrevoService {
       {
         FIRSTNAME: contactData.firstName,
         LASTNAME: contactData.lastName,
-        INTERESTS: contactData.interests.join(', '),
-        BUDGET: contactData.budget,
         MESSAGE: contactData.message || '',
       },
       contactData.newsletterSubscribed,

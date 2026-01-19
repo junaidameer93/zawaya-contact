@@ -20,12 +20,6 @@ export class NextsenseFormSubmission
   @Prop({ required: true })
   email: string;
 
-  @Prop({ type: [String], required: true })
-  interests: string[];
-
-  @Prop({ required: true })
-  budget: string;
-
   @Prop()
   message: string;
 

@@ -30,8 +30,8 @@ export const newFormSubmissionTemplate = ({
 
             <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0;">
               <h3 style="margin-top: 0;">Submission Details</h3>
-              <p><strong>Interests:</strong> ${interests.join(', ')}</p>
-              <p><strong>Budget:</strong> ${budget}</p>
+              ${interests && interests.length > 0 ? `<p><strong>Interests:</strong> ${interests.join(', ')}</p>` : ''}
+              ${budget ? `<p><strong>Budget:</strong> ${budget}</p>` : ''}
               <p><strong>Newsletter Subscribed:</strong> ${newsletterSubscribed ? 'Yes' : 'No'}</p>
             </div>
 

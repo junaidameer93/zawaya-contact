@@ -1,11 +1,9 @@
 import {
   IsEmail,
   IsString,
-  IsArray,
   IsBoolean,
   IsOptional,
   MinLength,
-  ArrayMinSize,
 } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
@@ -38,31 +36,6 @@ export class CreateNextsenseFormSubmissionDto {
   })
   @IsEmail()
   email: string;
-
-  @ApiProperty({
-    description: 'Array of interests selected by the contact',
-    example: ['Web Development', 'Mobile Apps'],
-    type: [String],
-  })
-  @IsArray()
-  @ArrayMinSize(1)
-  @IsString({ each: true })
-  @Transform(({ value }) => {
-    // Handle FormData arrays - they can come as comma-separated strings or arrays
-    if (typeof value === 'string') {
-      return value.split(',').map((item) => item.trim());
-    }
-    return Array.isArray(value) ? value : [value];
-  })
-  interests: string[];
-
-  @ApiProperty({
-    description: 'Budget range selected by the contact',
-    example: '$10,000 - $50,000',
-  })
-  @IsString()
-  @MinLength(1)
-  budget: string;
 
   @ApiPropertyOptional({
     description: 'Optional message from the contact',

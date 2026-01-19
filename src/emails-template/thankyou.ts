@@ -9,7 +9,8 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
     logo_footer: `${ASSET_BASE_URL}/logo_footer.png?alt=media&token=edaf4c43-cdf4-41a9-977d-d9a236b154ed`,
   };
 
-  const interestsString = interests.join(', ');
+  const interestsString = interests && interests.length > 0 ? interests.join(', ') : '';
+  const hasInterests = interestsString.length > 0;
 
   return `<!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -149,8 +150,7 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
                       <tr>
                         <td class="content-text"
                           style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; color: #000000; line-height: 20px; letter-spacing: -0.16px;">
-                          <p style="margin: 0 0 20px 0;">We've received your inquiry submitted through our website and
-                            appreciate your interest in our ${interestsString} services.</p>
+                          <p style="margin: 0 0 20px 0;">We've received your inquiry submitted through our website${hasInterests ? ` and appreciate your interest in our ${interestsString} services` : ''}.</p>
                           <p style="margin: 0;">Our team is currently reviewing your requirements. One of our
                             specialists will get back to you shortly to discuss your needs, provide insights, or suggest
                             next steps.</p>

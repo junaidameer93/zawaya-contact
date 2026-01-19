@@ -71,7 +71,7 @@ export class NextsenseFormService {
 
       return {
         success: true,
-        message: 'Form submitted successfully',
+        message: 'Form submitted successfully..',
         submissionId: savedSubmission._id,
       };
     } catch (error) {
@@ -114,8 +114,6 @@ export class NextsenseFormService {
       email: submission.email,
       firstName: submission.firstName,
       lastName: submission.lastName,
-      interests: submission.interests,
-      budget: submission.budget,
       message: submission.message,
       newsletterSubscribed: submission.newsletterSubscribed,
     });
@@ -151,15 +149,15 @@ export class NextsenseFormService {
         recipientEmail: submission.email,
         firstName: submission.firstName,
         lastName: submission.lastName,
-        interests: submission.interests,
+        interests: [],
         source: 'nextsense' as ThankYouEmailSource,
       }),
       this.emailService.sendAdminNotification({
         firstName: submission.firstName,
         lastName: submission.lastName,
         email: submission.email,
-        interests: submission.interests,
-        budget: submission.budget,
+        interests: [],
+        budget: '',
         message: submission.message,
         newsletterSubscribed: submission.newsletterSubscribed,
         submissionId: String(submission._id),
