@@ -1,0 +1,202 @@
+{
+  "info": {
+    "name": "Form Handler API",
+    "description": "Collection for testing the Form Handler API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}",
+          "host": ["{{baseUrl}}"]
+        },
+        "description": "Check if the API is running"
+      }
+    },
+    {
+      "name": "Submit Form (JSON)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"interests\": [\"Website Development\", \"AI Powered System\"],\n  \"budget\": \"$10,000 - $25,000\",\n  \"message\": \"I'm interested in building a custom web application with AI features.\",\n  \"newsletterSubscribed\": true,\n  \"privacyPolicyAccepted\": true\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/form/submit-json",
+          "host": ["{{baseUrl}}"],
+          "path": ["form", "submit-json"]
+        },
+        "description": "Submit a contact form without file attachments"
+      }
+    },
+    {
+      "name": "Submit Form with Files",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "firstName",
+              "value": "Jane",
+              "type": "text"
+            },
+            {
+              "key": "lastName",
+              "value": "Smith",
+              "type": "text"
+            },
+            {
+              "key": "email",
+              "value": "jane.smith@example.com",
+              "type": "text"
+            },
+            {
+              "key": "interests",
+              "value": "[\"Blockchain Solutions\", \"Mobile App Development\"]",
+              "type": "text"
+            },
+            {
+              "key": "budget",
+              "value": "$25,000 - $50,000",
+              "type": "text"
+            },
+            {
+              "key": "message",
+              "value": "Need a secure mobile app with blockchain integration.",
+              "type": "text"
+            },
+            {
+              "key": "newsletterSubscribed",
+              "value": "true",
+              "type": "text"
+            },
+            {
+              "key": "privacyPolicyAccepted",
+              "value": "true",
+              "type": "text"
+            },
+            {
+              "key": "attachments",
+              "type": "file",
+              "src": []
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/form/submit",
+          "host": ["{{baseUrl}}"],
+          "path": ["form", "submit"]
+        },
+        "description": "Submit a contact form with file attachments"
+      }
+    },
+    {
+      "name": "Submit Form - Multiple Interests",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Bob\",\n  \"lastName\": \"Johnson\",\n  \"email\": \"bob@example.com\",\n  \"interests\": [\"Website Development\", \"Blockchain Solutions\", \"AI Powered System\", \"Mobile App Development\"],\n  \"budget\": \"$50,000 - $100,000\",\n  \"message\": \"Looking for a comprehensive digital transformation solution.\",\n  \"newsletterSubscribed\": true,\n  \"privacyPolicyAccepted\": true\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/form/submit-json",
+          "host": ["{{baseUrl}}"],
+          "path": ["form", "submit-json"]
+        },
+        "description": "Submit form with multiple interests selected"
+      }
+    },
+    {
+      "name": "Submit Form - Minimal (No Message)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Alice\",\n  \"lastName\": \"Williams\",\n  \"email\": \"alice@example.com\",\n  \"interests\": [\"MVP Development\"],\n  \"budget\": \"$5,000 - $10,000\",\n  \"newsletterSubscribed\": false,\n  \"privacyPolicyAccepted\": true\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/form/submit-json",
+          "host": ["{{baseUrl}}"],
+          "path": ["form", "submit-json"]
+        },
+        "description": "Submit form with only required fields (message is optional)"
+      }
+    },
+    {
+      "name": "Submit Form - Invalid (Missing Fields)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Test\",\n  \"email\": \"test@example.com\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/form/submit-json",
+          "host": ["{{baseUrl}}"],
+          "path": ["form", "submit-json"]
+        },
+        "description": "Test validation - should fail due to missing required fields"
+      }
+    },
+    {
+      "name": "Submit Form - Invalid Email",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"User\",\n  \"email\": \"not-an-email\",\n  \"interests\": [\"Website Development\"],\n  \"budget\": \"$5,000 - $10,000\",\n  \"newsletterSubscribed\": true,\n  \"privacyPolicyAccepted\": true\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/form/submit-json",
+          "host": ["{{baseUrl}}"],
+          "path": ["form", "submit-json"]
+        },
+        "description": "Test validation - should fail due to invalid email format"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}
+
