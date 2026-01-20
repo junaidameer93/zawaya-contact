@@ -6,7 +6,7 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
     logo: `${ASSET_BASE_URL}/Logo%20(2).png?alt=media&token=d5b627d1-d7ac-487e-81f4-82a31b74dbbd`,
     signature: `${ASSET_BASE_URL}/signature.png?alt=media&token=060f4c15-d089-4649-a0fb-8ca3867188f8`,
     social_icon_linkedin: `${ASSET_BASE_URL}/social_icon_linkedin.png?alt=media&token=9d65e4c9-ec2c-4d61-a84c-221a86f1753c`,
-    logo_footer: `${ASSET_BASE_URL}/logo_footer.png?alt=media&token=edaf4c43-cdf4-41a9-977d-d9a236b154ed`,
+    logo_footer: `${ASSET_BASE_URL}/Logo%20(2).png?alt=media&token=d5b627d1-d7ac-487e-81f4-82a31b74dbbd`,
   };
 
   return `<!DOCTYPE html
@@ -222,7 +222,7 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
                             style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 500; color: #000000; line-height: 1.6; letter-spacing: -0.15px; margin: 0;">
                             Zawaya Dao<br/>
                             IT Consulting &amp; Software Development<br/>
-                            office@nextsensesolution.com
+                            contact@zawayadao.com
                           </p>
                         </td>
                         <td class="footer-column footer-right" valign="top" width="50%" align="right" style="width: 50%; text-align: right;">
@@ -246,7 +246,7 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
                           </p>
                           <p
                             style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #2f2f2f; line-height: 1.4; letter-spacing: -0.14px; margin: 0;">
-                            We are here to help, learn more about Zawaya Dao solutions here or <a
+                            We are here to help, learn more about Zawaya Dao here or <a
                               href="https://www.zawayadao.com/contact-us" target="_blank"
                               style="color: #6b46ff; font-weight: 500; text-decoration: none;">contact us</a>
                           </p>
@@ -262,7 +262,7 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
                     <p
                       style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 400; color: #6f6f6f; line-height: 1.5; letter-spacing: -0.12px; margin: 0; text-align: center;">
                       Need Help? Visit our website or email us to learn more. For any inquiries or support, reach out to
-                      us at office@nextsensesolution.com<br/>
+                      us at contact@zawayadao.com<br/>
                       If you wish to unsubscribe from our emails, click <a href="#"
                         style="color: #6f6f6f; text-decoration: underline;">Unsubscribe</a>.
                     </p>
