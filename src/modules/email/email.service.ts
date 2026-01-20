@@ -15,7 +15,7 @@ import { blockyfyThankyouTemplate } from 'src/emails-template/blockyfy-thankyou'
  * Default sender configurations
  */
 const DEFAULT_SENDERS = {
-  FEXEN: { name: 'Nextsense Team', email: 'noreply@nextsensesolution.com' },
+  FEXEN: { name: 'Zawaya Team', email: 'noreply@zawayadao.com' },
   BLOCKYFY: {
     name: 'Blockyfy Software Solutions',
     email: 'noreply@blockyfy.com',
