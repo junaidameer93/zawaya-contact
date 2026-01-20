@@ -226,36 +226,7 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
                           </p>
                         </td>
                         <td class="footer-column footer-right" valign="top" width="50%" align="right" style="width: 50%; text-align: right;">
-                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="right">
-                            <tr>
-                              <td style="text-align: center; padding-bottom: 15px;">
-                                <p
-                                  style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 500; color: #000000; letter-spacing: -0.15px; margin: 0;">
-                                  Connect with us
-                                </p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <table role="presentation" cellspacing="0" cellpadding="0" border="0">
-                                  <tr>
-                                    
-                                    <!-- LinkedIn -->
-                                    <td>
-                                      <a href="https://www.linkedin.com/company/nextsense-solutions" target="_blank"
-                                        style="display: inline-block; text-decoration: none;">
-                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0">
-                                          <tr>
-                                            <img src='${assets.social_icon_linkedin}' alt='img-linkedin' style="max-width: 100%; height: auto;">
-                                          </tr>
-                                        </table>
-                                      </a>
-                                    </td>
-                                  </tr>
-                                </table>
-                              </td>
-                            </tr>
-                          </table>
+                          
                         </td>
                       </tr>
                     </table>
