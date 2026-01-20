@@ -3,14 +3,11 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
     'https://firebasestorage.googleapis.com/v0/b/soll-wallet.firebasestorage.app/o';
 
   const assets = {
-    logo: `${ASSET_BASE_URL}/logo_header.png?alt=media&token=405be17e-d367-4237-a55d-c22f46c5f556`,
+    logo: `${ASSET_BASE_URL}/Logo%20(2).png?alt=media&token=d5b627d1-d7ac-487e-81f4-82a31b74dbbd`,
     signature: `${ASSET_BASE_URL}/signature.png?alt=media&token=060f4c15-d089-4649-a0fb-8ca3867188f8`,
     social_icon_linkedin: `${ASSET_BASE_URL}/social_icon_linkedin.png?alt=media&token=9d65e4c9-ec2c-4d61-a84c-221a86f1753c`,
     logo_footer: `${ASSET_BASE_URL}/logo_footer.png?alt=media&token=edaf4c43-cdf4-41a9-977d-d9a236b154ed`,
   };
-
-  const interestsString = interests && interests.length > 0 ? interests.join(', ') : '';
-  const hasInterests = interestsString.length > 0;
 
   return `<!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -19,7 +16,7 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thank You for Contacting NextSense Solutions</title>
+  <title>Thank You for Contacting Zawaya Dao</title>
   <style type="text/css">
     /* Mobile responsive styles */
     @media only screen and (max-width: 600px) {
@@ -86,7 +83,7 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
   style="margin: 0; padding: 0; background-color: #f5f5f5; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
   <!-- Preheader text -->
   <div style="display: none; max-height: 0; overflow: hidden;">
-    Thank you for contacting NextSense Solutions. We've received your inquiry and will get back to you shortly.
+    Thank you for contacting Zawaya Dao. We've received your inquiry and will get back to you shortly.
   </div>
 
   <!-- Main container -->
@@ -135,7 +132,7 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
                           style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 500; color: #000000; line-height: 1.5; letter-spacing: -0.16px;">
                           <p style="margin: 0 0 5px 0;">Hello,</p>
                           <p style="margin: 0;">Thank you for contacting
-                            <strong style="font-weight: 700;">NextSense Solutions.</strong>
+                            <strong style="font-weight: 700;">Zawaya Dao.</strong>
                           </p>
                         </td>
                       </tr>
@@ -150,7 +147,7 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
                       <tr>
                         <td class="content-text"
                           style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; color: #000000; line-height: 20px; letter-spacing: -0.16px;">
-                          <p style="margin: 0 0 20px 0;">We've received your inquiry submitted through our website${hasInterests ? ` and appreciate your interest in our ${interestsString} services` : ''}.</p>
+                          <p style="margin: 0 0 20px 0;">We've received your inquiry submitted through our website.</p>
                           <p style="margin: 0;">Our team is currently reviewing your requirements. One of our
                             specialists will get back to you shortly to discuss your needs, provide insights, or suggest
                             next steps.</p>
@@ -182,25 +179,11 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
                     <p
                       style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; color: #000000; line-height: 22px; letter-spacing: -0.16px; margin: 0;">
                       Best regards,<br/>
-                      <span style="font-weight: 600;">Nextsense Team</span>
+                      <span style="font-weight: 600;">Zawaya Dao Team</span>
                     </p>
                   </td>
                 </tr>
 
-                <!-- Signature -->
-                <tr>
-                  <td style="padding-bottom: 30px;">
-                    <table role="presentation" cellspacing="0" cellpadding="0" border="0">
-                      <tr>
-                        <td
-                          style="font-family: 'Brush Script MT', 'Segoe Script', 'Bradley Hand', cursive; color: #000000;">
-                          <img src='${assets.signature}' alt='img-signature' style="max-width: 100%; height: auto;"/>
-
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
 
                 <!-- Visit Blogs Button -->
                 <tr>
@@ -208,7 +191,7 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                       <tr>
                         <td style="background-color: #000000; border-radius: 7px; mso-padding-alt: 10px 13px;">
-                          <a href="https://nextsensesolution.com/" target="_blank"
+                          <a href="https://www.zawayadao.com/" target="_blank"
                             style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 500; color: #ffffff; text-decoration: none; padding: 10px 13px; letter-spacing: -0.28px;">Visit
                             our site</a>
                         </td>
@@ -237,7 +220,7 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
                         <td class="footer-column" valign="top" width="50%" style="width: 50%;">
                           <p
                             style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 500; color: #000000; line-height: 1.6; letter-spacing: -0.15px; margin: 0;">
-                            NextSense Solutions<br/>
+                            Zawaya Dao<br/>
                             IT Consulting &amp; Software Development<br/>
                             office@nextsensesolution.com
                           </p>
@@ -292,8 +275,8 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
                           </p>
                           <p
                             style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #2f2f2f; line-height: 1.4; letter-spacing: -0.14px; margin: 0;">
-                            We are here to help, learn more about NextSense solutions here or <a
-                              href="https://nextsensesolution.com/makeAnEnquiry" target="_blank"
+                            We are here to help, learn more about Zawaya Dao solutions here or <a
+                              href="https://www.zawayadao.com/contact-us" target="_blank"
                               style="color: #6b46ff; font-weight: 500; text-decoration: none;">contact us</a>
                           </p>
                         </td>
@@ -344,7 +327,7 @@ export const thankyouTemplate = ({ interests }: { interests: string[] }) => {
                         
                           <p
                             style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 400; color: #000000; line-height: 1.5; letter-spacing: -0.13px; margin: 0; text-align: center;">
-                            © ${new Date().getFullYear()} Nextsense Solutions
+                            © ${new Date().getFullYear()} Zawaya Dao
                           </p>
                         </td>
                       </tr>
