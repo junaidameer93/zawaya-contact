@@ -55,11 +55,11 @@ async function bootstrap() {
   // Display appropriate URL based on environment
   const isProduction = process.env.NODE_ENV === 'production';
   const baseUrl = isProduction 
-    ? 'https://api.nextsensesolution.com'
+    ? 'https://contact-api.zawayadao.com'
     : `http://localhost:${port}`;
   
   console.log(`🚀 Application is running on: ${baseUrl}`);
-  console.log(`📝 Form submission endpoint: ${baseUrl}/form/submit`);
+  console.log(`📝 Zawaya Contact Form: ${baseUrl}/zawaya-contact/submit`);
   console.log(`📚 Swagger API documentation: ${baseUrl}/api`);
 }
 

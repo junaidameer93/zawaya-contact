@@ -1,6 +1,6 @@
-# Form Handler API
+# Zawaya DAO Contact API
 
-A NestJS backend API that handles contact form submissions, stores data in MongoDB, and syncs contacts to Brevo (formerly Sendinblue).
+A NestJS backend API that handles Zawaya DAO contact form submissions, stores data in MongoDB, and syncs contacts to Brevo (formerly Sendinblue).
 
 ## Features
 
@@ -47,7 +47,13 @@ A NestJS backend API that handles contact form submissions, stores data in Mongo
    
    # Brevo Configuration
    BREVO_API_KEY=your-actual-brevo-api-key
-   BREVO_LIST_ID=your-list-id
+   
+   # Legacy Brevo List ID (for Blockyfy form)
+   BREVO_LIST_ID=your-blockyfy-list-id
+   
+   # Zawaya/Nextsense Brevo List Configuration
+   ZAWAYA_CONTACT_LIST=zawayadao-contacts
+   ZAWAYA_CONTACT_ID=6
    
    # Admin Notification Configuration
    ADMIN_EMAIL=admin@yourdomain.com
@@ -285,7 +291,9 @@ The API returns appropriate HTTP status codes:
 | ADMIN_EMAIL | Email address to receive form submission notifications | - | No |
 | PORT | Server port | 3000 | No |
 | ALLOWED_ORIGINS | CORS allowed origins (comma-separated) | http://localhost:3000 | No |
-| BREVO_LIST_ID | Brevo list ID for newsletter | - | No |
+| BREVO_LIST_ID | Brevo list ID for Blockyfy newsletter (legacy) | - | No |
+| ZAWAYA_CONTACT_LIST | Brevo list name for Nextsense/Zawaya contacts | zawayadao-contacts | No |
+| ZAWAYA_CONTACT_ID | Brevo list ID for Nextsense/Zawaya contacts | 6 | No |
 
 ## Troubleshooting
 

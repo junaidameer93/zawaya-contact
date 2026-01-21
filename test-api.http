@@ -1,63 +1,58 @@
-### Test Form Submission API
+### Test Zawaya DAO Contact API
 ### You can use this file with REST Client extension in VS Code
 
+### Production Endpoints:
+### Zawaya Contact: https://contact-api.zawayadao.com/zawaya-contact/submit
+### Blockyfy: https://contact-api.zawayadao.com/blockyfy-form/submit
+
 ### 1. Health Check (Test if API is running)
-GET http://localhost:3000
+GET http://localhost:3005
 
 ###
 
-### 2. Submit Form with JSON (No file uploads)
-POST http://localhost:3000/form/submit-json
+### 2. Submit Zawaya Contact Form with JSON (No file uploads)
+POST http://localhost:3005/zawaya-contact/submit-json
 Content-Type: application/json
 
 {
   "firstName": "John",
   "lastName": "Doe",
   "email": "john.doe@example.com",
-  "interests": ["Website Development", "AI Powered System"],
-  "budget": "$10,000 - $25,000",
-  "message": "I'm interested in building a custom web application with AI features. Looking forward to discussing the project.",
-  "newsletterSubscribed": true,
-  "privacyPolicyAccepted": true
+  "message": "I'm interested in Zawaya DAO services. Looking forward to discussing the project.",
+  "newsletterSubscribed": true
 }
 
 ###
 
-### 3. Submit Form with Multiple Interests
-POST http://localhost:3000/form/submit-json
+### 3. Submit Zawaya Contact Form (Production URL)
+POST https://contact-api.zawayadao.com/zawaya-contact/submit-json
 Content-Type: application/json
 
 {
   "firstName": "Jane",
   "lastName": "Smith",
   "email": "jane.smith@example.com",
-  "interests": ["Blockchain Solutions", "Mobile App Development", "Cybersecurity Solution"],
-  "budget": "$25,000 - $50,000",
-  "message": "Need a secure mobile app with blockchain integration.",
-  "newsletterSubscribed": false,
-  "privacyPolicyAccepted": true
+  "message": "Need information about Zawaya DAO blockchain solutions.",
+  "newsletterSubscribed": true
 }
 
 ###
 
 ### 4. Submit Form without Message (Optional field)
-POST http://localhost:3000/form/submit-json
+POST http://localhost:3005/zawaya-contact/submit-json
 Content-Type: application/json
 
 {
   "firstName": "Bob",
   "lastName": "Johnson",
   "email": "bob@example.com",
-  "interests": ["MVP Development"],
-  "budget": "$5,000 - $10,000",
-  "newsletterSubscribed": true,
-  "privacyPolicyAccepted": true
+  "newsletterSubscribed": true
 }
 
 ###
 
 ### 5. Invalid Request - Missing Required Fields (Should fail)
-POST http://localhost:3000/form/submit-json
+POST http://localhost:3005/zawaya-contact/submit-json
 Content-Type: application/json
 
 {
@@ -68,17 +63,14 @@ Content-Type: application/json
 ###
 
 ### 6. Invalid Request - Invalid Email (Should fail)
-POST http://localhost:3000/form/submit-json
+POST http://localhost:3005/zawaya-contact/submit-json
 Content-Type: application/json
 
 {
   "firstName": "Test",
   "lastName": "User",
   "email": "not-an-email",
-  "interests": ["Website Development"],
-  "budget": "$5,000 - $10,000",
-  "newsletterSubscribed": true,
-  "privacyPolicyAccepted": true
+  "newsletterSubscribed": true
 }
 
 ###

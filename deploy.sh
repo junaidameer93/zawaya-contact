@@ -195,10 +195,18 @@ PORT=3005
 NODE_ENV=production
 
 # CORS Configuration (comma-separated origins)
-ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3005,http://localhost:4200,https://fexen-website.vercel.app,https://api.nextsensesolution.com
+ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3005,http://localhost:4200,https://zawayadao.com,https://www.zawayadao.com,https://contact-api.zawayadao.com
 
 # Brevo List IDs (optional - for adding contacts to specific lists)
+# Legacy list ID - used for Blockyfy form submissions
 BREVO_LIST_ID=
+
+# Zawaya/Nextsense specific list configuration
+ZAWAYA_CONTACT_LIST=zawayadao-contacts
+ZAWAYA_CONTACT_ID=6
+
+# Admin Email (optional - for receiving form submission notifications)
+ADMIN_EMAIL=
 EOF
     print_message "Created initial .env file with default configuration"
     print_message "You can manually edit .env file at: $APP_DIR/.env"

@@ -32,17 +32,28 @@ export type BrevoBlockyfyContactData = Omit<
 export class BrevoService {
   private readonly logger = new Logger(BrevoService.name);
   private contactsApi: brevo.ContactsApi | null = null;
-  private readonly listId: string | undefined;
+  private readonly listId: string | undefined; // Legacy - used for Blockyfy
+  private readonly zawayadaoListId: string | undefined; // New - for Nextsense/Zawaya
+  private readonly zawayadaoListName: string | undefined; // Optional list name
 
   constructor(private configService: ConfigService) {
     const apiKey = this.configService.get<string>('BREVO_API_KEY');
+    
+    // Legacy list ID for Blockyfy
     this.listId = this.configService.get<string>('BREVO_LIST_ID');
+    
+    // New Zawaya-specific list configuration for Nextsense
+    this.zawayadaoListId = this.configService.get<string>('ZAWAYA_CONTACT_ID');
+    this.zawayadaoListName = this.configService.get<string>('ZAWAYA_CONTACT_LIST');
 
     if (this.isValidApiKey(apiKey)) {
       this.initializeBrevoClient(apiKey!);
     } else {
       this.logger.warn('Brevo API key not configured. Contact sync disabled.');
     }
+    
+    // Log configuration for debugging
+    this.logger.log(`Brevo Lists - Blockyfy: ${this.listId || 'not set'}, Zawaya: ${this.zawayadaoListId || 'not set'}`);
   }
 
   /**
@@ -159,6 +170,7 @@ export class BrevoService {
 
   /**
    * Builds the Brevo contact payload for Nextsense
+   * Uses Zawaya-specific list ID (ZAWAYA_CONTACT_ID)
    */
   private buildNextsenseContactPayload(
     contactData: BrevoContactData,
@@ -172,9 +184,10 @@ export class BrevoService {
       MESSAGE: contactData.message || '',
     } as any;
 
-    // Add to newsletter list if subscribed
-    if (contactData.newsletterSubscribed && this.listId) {
-      contact.listIds = [parseInt(this.listId)];
+    // Add to Zawaya newsletter list if subscribed (uses new env var)
+    if (contactData.newsletterSubscribed && this.zawayadaoListId) {
+      contact.listIds = [parseInt(this.zawayadaoListId)];
+      this.logger.log(`Adding contact to Zawaya list: ${this.zawayadaoListName || this.zawayadaoListId}`);
     }
 
     contact.updateEnabled = true;
@@ -292,6 +305,7 @@ export class BrevoService {
 
   /**
    * Updates an existing Nextsense contact in Brevo
+   * Uses Zawaya-specific list ID (ZAWAYA_CONTACT_ID)
    */
   private async updateExistingContact(
     contactData: BrevoContactData,
@@ -304,11 +318,13 @@ export class BrevoService {
         MESSAGE: contactData.message || '',
       },
       contactData.newsletterSubscribed,
+      'nextsense', // Specify form type for correct list ID
     );
   }
 
   /**
    * Updates an existing Blockyfy contact in Brevo
+   * Uses legacy list ID (BREVO_LIST_ID)
    */
   private async updateExistingBlockyfyContact(
     contactData: BrevoBlockyfyContactData,
@@ -322,16 +338,19 @@ export class BrevoService {
         MESSAGE: contactData.message || '',
       },
       contactData.newsletterSubscribed,
+      'blockyfy', // Specify form type for correct list ID
     );
   }
 
   /**
    * Generic method to update an existing contact in Brevo
+   * @param formType - 'nextsense' uses Zawaya list, 'blockyfy' uses legacy list
    */
   private async updateContact(
     email: string,
     attributes: Record<string, string>,
     newsletterSubscribed: boolean,
+    formType: 'nextsense' | 'blockyfy' = 'nextsense',
   ): Promise<string | null> {
     if (!this.contactsApi) {
       return email;
@@ -341,8 +360,15 @@ export class BrevoService {
       const updatePayload = new brevo.UpdateContact();
       updatePayload.attributes = attributes as any;
 
-      if (newsletterSubscribed && this.listId) {
-        updatePayload.listIds = [parseInt(this.listId)];
+      // Use appropriate list ID based on form type
+      if (newsletterSubscribed) {
+        if (formType === 'nextsense' && this.zawayadaoListId) {
+          updatePayload.listIds = [parseInt(this.zawayadaoListId)];
+          this.logger.log(`Updating contact in Zawaya list: ${this.zawayadaoListName || this.zawayadaoListId}`);
+        } else if (formType === 'blockyfy' && this.listId) {
+          updatePayload.listIds = [parseInt(this.listId)];
+          this.logger.log(`Updating contact in Blockyfy list: ${this.listId}`);
+        }
       }
 
       const response = await this.contactsApi.updateContact(

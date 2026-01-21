@@ -1,4 +1,4 @@
-# Ì≥ã Form Handler API - Project Summary
+# ÔøΩÔøΩÔøΩ Form Handler API - Project Summary
 
 ## ‚úÖ Project Complete!
 
@@ -6,7 +6,7 @@ A fully functional NestJS backend API for handling contact form submissions with
 
 ---
 
-## Ì≥¶ What's Included
+## ÔøΩÔøΩÔøΩ What's Included
 
 ### Core Functionality
 - ‚úÖ RESTful API with two endpoints (`/form/submit` and `/form/submit-json`)
@@ -64,7 +64,7 @@ API will be available at: `http://localhost:3000`
 
 ---
 
-## Ì≥ù Form Fields
+## ÔøΩÔøΩÔøΩ Form Fields
 
 The API accepts the following fields from your frontend form:
 
@@ -90,7 +90,7 @@ The API accepts the following fields from your frontend form:
 
 ---
 
-## Ì¥ó API Endpoints
+## ÔøΩÔøΩÔøΩ API Endpoints
 
 ### POST `/form/submit`
 - **Content-Type**: `multipart/form-data`
@@ -104,7 +104,7 @@ The API accepts the following fields from your frontend form:
 
 ---
 
-## Ì≤æ Data Flow
+## ÔøΩÔøΩÔøΩ Data Flow
 
 1. **Frontend** sends form data to API
 2. **API validates** all fields using DTOs
@@ -116,7 +116,7 @@ The API accepts the following fields from your frontend form:
 
 ---
 
-## Ì∑ÑÔ∏è MongoDB Schema
+## ÔøΩÔøΩÔøΩÔ∏è MongoDB Schema
 
 ```javascript
 {
@@ -138,7 +138,7 @@ The API accepts the following fields from your frontend form:
 
 ---
 
-## Ì≥ß Brevo Integration
+## ÔøΩÔøΩÔøΩ Brevo Integration
 
 When a form is submitted:
 
@@ -156,7 +156,7 @@ When a form is submitted:
 
 ---
 
-## Ì¥ß Environment Variables
+## ÔøΩÔøΩÔøΩ Environment Variables
 
 Required in `.env` file:
 
@@ -167,15 +167,25 @@ MONGODB_URI=mongodb://localhost:27017/form-handler
 # Brevo API (get from https://app.brevo.com)
 BREVO_API_KEY=your-brevo-api-key
 
+# Brevo List Configuration
+# Legacy list for Blockyfy form submissions
+BREVO_LIST_ID=
+
+# Zawaya/Nextsense specific list
+ZAWAYA_CONTACT_LIST=zawayadao-contacts
+ZAWAYA_CONTACT_ID=6
+
+# Admin Email for notifications
+ADMIN_EMAIL=admin@yourdomain.com
+
 # Optional Configuration
 PORT=3000
 ALLOWED_ORIGINS=http://localhost:3000
-BREVO_LIST_ID=
 ```
 
 ---
 
-## Ì≥Å Project Structure
+## ÔøΩÔøΩÔøΩ Project Structure
 
 ```
 form-handler/
@@ -204,7 +214,7 @@ form-handler/
 
 ---
 
-## Ì∑™ Testing
+## ÔøΩÔøΩÔøΩ Testing
 
 ### Manual Testing
 
@@ -220,7 +230,7 @@ Use `test-api.http` with VS Code REST Client extension, or import `postman-colle
 
 ---
 
-## Ìºê Frontend Integration
+## ÔøΩÔøΩÔøΩ Frontend Integration
 
 ### Fetch API Example
 
@@ -257,7 +267,7 @@ for (let file of files) {
 
 ---
 
-## Ì∫Ä Deployment
+## ÔøΩÔøΩÔøΩ Deployment
 
 For production deployment:
 
@@ -295,7 +305,7 @@ For production deployment:
 
 ---
 
-## Ì≥ö Next Steps
+## ÔøΩÔøΩÔøΩ Next Steps
 
 1. **Development**:
    - Update CORS origins in `.env`
@@ -318,7 +328,7 @@ For production deployment:
 
 ---
 
-## Ì∂ò Support
+## ÔøΩÔøΩÔøΩ Support
 
 - **Setup Issues**: Check `ENV_SETUP.md`
 - **API Testing**: Use `test-api.http` or `postman-collection.json`
@@ -344,7 +354,7 @@ For production deployment:
 
 ---
 
-## Ìæâ Ready to Use!
+## ÔøΩÔøΩÔøΩ Ready to Use!
 
 Your Form Handler API is complete and ready for:
 - ‚úÖ Development testing
@@ -355,4 +365,4 @@ Your Form Handler API is complete and ready for:
 
 ---
 
-**Built with NestJS, MongoDB, and Brevo** Ì∫Ä
+**Built with NestJS, MongoDB, and Brevo** ÔøΩÔøΩÔøΩ

@@ -31,17 +31,18 @@ interface UploadedFile {
 }
 
 /**
- * Controller for handling Nextsense form submission endpoints
+ * Controller for handling Zawaya DAO contact form submission endpoints
+ * Routes: /zawaya-contact/submit and /zawaya-contact/submit-json
  */
-@ApiTags('Nextsense Form')
-@Controller('nextsense-form')
+@ApiTags('Zawaya Contact Form')
+@Controller('zawaya-contact')
 export class NextsenseFormController {
   constructor(
     private readonly nextsenseFormService: NextsenseFormService,
   ) {}
 
   /**
-   * POST /nextsense-form/submit - Handles form submission from frontend
+   * POST /zawaya-contact/submit - Handles form submission from frontend
    * Accepts multipart/form-data for file uploads
    * Saves data to MongoDB and syncs contact to Brevo
    */
@@ -49,7 +50,7 @@ export class NextsenseFormController {
   @HttpCode(HttpStatus.CREATED)
   @UseInterceptors(FileUploadInterceptor())
   @ApiOperation({
-    summary: 'Submit Nextsense form with file uploads',
+    summary: 'Submit Zawaya DAO contact form with file uploads',
     description:
       'Accepts multipart/form-data. Use the "attachments" field to upload files from your computer (max 5 files, 5MB each).',
   })

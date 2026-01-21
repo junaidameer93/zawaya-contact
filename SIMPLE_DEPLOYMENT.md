@@ -125,15 +125,23 @@ MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/form-handler?ret
 # Brevo Configuration  
 BREVO_API_KEY=your-brevo-api-key-here
 
+# Brevo List Configuration
+# Legacy list for Blockyfy form submissions
+BREVO_LIST_ID=
+
+# Zawaya/Nextsense specific list configuration
+ZAWAYA_CONTACT_LIST=zawayadao-contacts
+ZAWAYA_CONTACT_ID=6
+
+# Admin Email for notifications
+ADMIN_EMAIL=admin@yourdomain.com
+
 # Server Configuration
 PORT=3000
 NODE_ENV=production
 
 # CORS Configuration
 ALLOWED_ORIGINS=https://yourdomain.com,https://www.yourdomain.com
-
-# Optional: Brevo List ID
-BREVO_LIST_ID=
 ```
 
 **Important**: Get your Brevo API key from https://app.brevo.com → Settings → API Keys
