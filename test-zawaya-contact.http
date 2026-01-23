@@ -1,0 +1,143 @@
+### Test Zawaya Contact Form API
+### Updated endpoints: /zawaya-contact/submit and /zawaya-contact/submit-json
+### Use with REST Client extension in VS Code
+
+###############################################################################
+### ZAWAYA CONTACT FORM - JSON ENDPOINT (No files)
+###############################################################################
+
+### 1. ✅ Submit via JSON - Only required fields (matches your form exactly)
+POST http://localhost:3005/zawaya-contact/submit-json
+Content-Type: application/json
+
+{
+  "firstName": "Noah",
+  "lastName": "James",
+  "businessEmail": "noah.james@company.com"
+}
+
+###
+
+### 2. ✅ Submit via JSON - With all fields
+POST http://localhost:3005/zawaya-contact/submit-json
+Content-Type: application/json
+
+{
+  "firstName": "Sarah",
+  "lastName": "Wilson",
+  "businessEmail": "sarah.wilson@techcorp.com",
+  "companyProfile": "Leading tech company specializing in AI and machine learning solutions for enterprise clients",
+  "companyWebsite": "https://www.techcorp.com"
+}
+
+###
+
+### 3. ✅ Submit via JSON - With company profile only
+POST http://localhost:3005/zawaya-contact/submit-json
+Content-Type: application/json
+
+{
+  "firstName": "Michael",
+  "lastName": "Chen",
+  "businessEmail": "m.chen@innovate.io",
+  "companyProfile": "Innovative startup focused on blockchain technology"
+}
+
+###
+
+### 4. ✅ Submit via JSON - With company website only
+POST http://localhost:3005/zawaya-contact/submit-json
+Content-Type: application/json
+
+{
+  "firstName": "Emily",
+  "lastName": "Rodriguez",
+  "businessEmail": "emily@startupx.com",
+  "companyWebsite": "https://www.startupx.com"
+}
+
+###
+
+###############################################################################
+### ERROR CASES - These should fail (validation errors)
+###############################################################################
+
+### 5. ❌ Missing firstName (SHOULD FAIL)
+POST http://localhost:3005/zawaya-contact/submit-json
+Content-Type: application/json
+
+{
+  "lastName": "Doe",
+  "businessEmail": "test@example.com"
+}
+
+###
+
+### 6. ❌ Missing lastName (SHOULD FAIL)
+POST http://localhost:3005/zawaya-contact/submit-json
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "businessEmail": "test@example.com"
+}
+
+###
+
+### 7. ❌ Missing businessEmail (SHOULD FAIL)
+POST http://localhost:3005/zawaya-contact/submit-json
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe"
+}
+
+###
+
+### 8. ❌ Invalid email format (SHOULD FAIL)
+POST http://localhost:3005/zawaya-contact/submit-json
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "businessEmail": "not-an-email"
+}
+
+###
+
+### 9. ❌ Empty firstName (SHOULD FAIL)
+POST http://localhost:3005/zawaya-contact/submit-json
+Content-Type: application/json
+
+{
+  "firstName": "",
+  "lastName": "Doe",
+  "businessEmail": "test@example.com"
+}
+
+###
+
+###############################################################################
+### EXPECTED RESPONSES
+###############################################################################
+
+# ✅ Success Response (201 Created):
+# {
+#   "success": true,
+#   "message": "Form submitted successfully",
+#   "submissionId": "507f1f77bcf86cd799439011"
+# }
+
+# ❌ Error Response (400 Bad Request):
+# {
+#   "statusCode": 400,
+#   "message": [
+#     "businessEmail must be an email",
+#     "firstName must be longer than or equal to 1 characters"
+#   ],
+#   "error": "Bad Request"
+# }
+
+###

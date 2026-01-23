@@ -20,6 +20,17 @@ export type BrevoBlockyfyContactData = Omit<
 >;
 
 /**
+ * Contact data for Brevo CRM (Zawaya)
+ */
+export interface BrevoZawayaContactData {
+  businessEmail: string;
+  firstName: string;
+  lastName: string;
+  companyProfile?: string;
+  companyWebsite?: string;
+}
+
+/**
  * Service for managing contacts in Brevo (formerly Sendinblue)
  *
  * Responsibilities:
@@ -120,6 +131,46 @@ export class BrevoService {
   }
 
   /**
+   * Creates or updates a Zawaya contact in Brevo CRM
+   *
+   * @param contactData - Contact information to sync
+   * @returns Brevo contact ID or null if sync fails
+   */
+  async createOrUpdateZawayaContact(
+    contactData: BrevoZawayaContactData,
+  ): Promise<string | null> {
+    if (!this.contactsApi) {
+      this.logger.warn('Brevo Contacts API not initialized. Skipping sync.');
+      return null;
+    }
+
+    try {
+      const contact = this.buildZawayaContactPayload(contactData);
+      const response = await this.contactsApi.createContact(contact);
+
+      this.logger.log(`Contact created/updated in Brevo: ${contactData.businessEmail}`);
+      return this.extractContactId(response, contactData.businessEmail);
+    } catch (error) {
+      this.logError(error);
+
+      if (this.isDuplicateError(error)) {
+        this.logger.log(`Contact exists, updating: ${contactData.businessEmail}`);
+        try {
+          return await this.updateExistingZawayaContact(contactData);
+        } catch (updateError) {
+          this.logError(updateError, 'Error updating existing Zawaya contact in Brevo:');
+          return contactData.businessEmail;
+        }
+      }
+
+      this.logger.warn(
+        `Using email as contact identifier due to error: ${contactData.businessEmail}`,
+      );
+      return contactData.businessEmail;
+    }
+  }
+
+  /**
    * Generic method to create or update a contact in Brevo CRM
    */
   private async createOrUpdateContact<T extends { email: string }>(
@@ -195,7 +246,7 @@ export class BrevoService {
   }
 
   /**
-   * Builds the Brevo contact payload
+   * Builds the Brevo contact payload for Blockyfy
    */
   private buildBlockyfyContactPayload(
     contactData: BrevoBlockyfyContactData,
@@ -214,6 +265,26 @@ export class BrevoService {
     if (contactData.newsletterSubscribed && this.listId) {
       contact.listIds = [parseInt(this.listId)];
     }
+
+    contact.updateEnabled = true;
+    return contact;
+  }
+
+  /**
+   * Builds the Brevo contact payload for Zawaya
+   */
+  private buildZawayaContactPayload(
+    contactData: BrevoZawayaContactData,
+  ): brevo.CreateContact {
+    const contact = new brevo.CreateContact();
+
+    contact.email = contactData.businessEmail;
+    contact.attributes = {
+      FIRSTNAME: contactData.firstName,
+      LASTNAME: contactData.lastName,
+      COMPANY_PROFILE: contactData.companyProfile || '',
+      COMPANY_WEBSITE: contactData.companyWebsite || '',
+    } as any;
 
     contact.updateEnabled = true;
     return contact;
@@ -340,6 +411,38 @@ export class BrevoService {
       contactData.newsletterSubscribed,
       'blockyfy', // Specify form type for correct list ID
     );
+  }
+
+  /**
+   * Updates an existing Zawaya contact in Brevo
+   */
+  private async updateExistingZawayaContact(
+    contactData: BrevoZawayaContactData,
+  ): Promise<string | null> {
+    if (!this.contactsApi) {
+      return contactData.businessEmail;
+    }
+
+    try {
+      const updatePayload = new brevo.UpdateContact();
+      updatePayload.attributes = {
+        FIRSTNAME: contactData.firstName,
+        LASTNAME: contactData.lastName,
+        COMPANY_PROFILE: contactData.companyProfile || '',
+        COMPANY_WEBSITE: contactData.companyWebsite || '',
+      } as any;
+
+      const response = await this.contactsApi.updateContact(
+        contactData.businessEmail,
+        updatePayload,
+      );
+      this.logger.log(`Zawaya contact updated in Brevo: ${contactData.businessEmail}`);
+
+      return this.extractContactId(response, contactData.businessEmail);
+    } catch (error) {
+      this.logError(error, 'Error updating Zawaya contact in Brevo:');
+      return contactData.businessEmail;
+    }
   }
 
   /**

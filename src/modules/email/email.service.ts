@@ -210,10 +210,11 @@ export class EmailService {
   ): Promise<SendEmailResult> {
     const fullName = `${data.firstName} ${data.lastName}`;
 
+    // Use Zawaya/Nextsense sender and template for zawaya and nextsense sources
     const sender =
-      data.source === 'nextsense' ? DEFAULT_SENDERS.FEXEN : DEFAULT_SENDERS.BLOCKYFY;
+      data.source === 'blockyfy' ? DEFAULT_SENDERS.BLOCKYFY : DEFAULT_SENDERS.FEXEN;
     const renderedTemplate =
-      data.source === 'nextsense' ? thankyouTemplate : blockyfyThankyouTemplate;
+      data.source === 'blockyfy' ? blockyfyThankyouTemplate : thankyouTemplate;
 
     return this.send({
       to: {

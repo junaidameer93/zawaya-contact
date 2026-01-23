@@ -3,8 +3,7 @@ import { Document } from 'mongoose';
 import { CreateNextsenseFormSubmissionDto } from 'src/dto/create-nextsense-form-submission.dto';
 
 /**
- * MongoDB schema for storing form submissions
- * This stores all contact form data including user interests, contact info, and message
+ * MongoDB schema for storing Zawaya contact form submissions
  */
 @Schema({ timestamps: true })
 export class NextsenseFormSubmission
@@ -18,16 +17,13 @@ export class NextsenseFormSubmission
   lastName: string;
 
   @Prop({ required: true })
-  email: string;
+  businessEmail: string;
 
   @Prop()
-  message: string;
+  companyProfile: string;
 
-  @Prop({ default: false })
-  newsletterSubscribed: boolean;
-
-  @Prop({ default: false })
-  privacyPolicyAccepted: boolean;
+  @Prop()
+  companyWebsite: string;
 
   @Prop({ type: [String] })
   attachments: string[];

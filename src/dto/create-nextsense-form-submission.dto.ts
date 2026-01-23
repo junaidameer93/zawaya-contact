@@ -1,22 +1,19 @@
 import {
   IsEmail,
   IsString,
-  IsBoolean,
   IsOptional,
   MinLength,
 } from 'class-validator';
-import { Transform } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 /**
- * DTO for validating incoming form submission data
+ * DTO for validating Zawaya contact form submission data
  * Ensures all required fields are present and properly formatted
- * Handles FormData transformations for arrays and booleans
  */
 export class CreateNextsenseFormSubmissionDto {
   @ApiProperty({
     description: 'First name of the contact',
-    example: 'John',
+    example: 'Noah',
   })
   @IsString()
   @MinLength(1)
@@ -24,56 +21,34 @@ export class CreateNextsenseFormSubmissionDto {
 
   @ApiProperty({
     description: 'Last name of the contact',
-    example: 'Doe',
+    example: 'James',
   })
   @IsString()
   @MinLength(1)
   lastName: string;
 
   @ApiProperty({
-    description: 'Email address of the contact',
-    example: 'john.doe@example.com',
+    description: 'Business email address of the contact',
+    example: 'noah.james@company.com',
   })
   @IsEmail()
-  email: string;
+  businessEmail: string;
 
   @ApiPropertyOptional({
-    description: 'Optional message from the contact',
-    example: 'I would like to discuss my project requirements.',
+    description: 'Company profile information',
+    example: 'Leading tech company specializing in AI solutions',
   })
   @IsOptional()
   @IsString()
-  message?: string;
+  companyProfile?: string;
 
-  @ApiProperty({
-    description: 'Whether the contact subscribed to newsletter',
-    example: true,
-    default: false,
+  @ApiPropertyOptional({
+    description: 'Company website URL',
+    example: 'https://www.company.com',
   })
-  @IsBoolean()
-  @Transform(({ value }) => {
-    // Handle FormData booleans - they come as strings "true" or "false"
-    if (typeof value === 'string') {
-      return value.toLowerCase() === 'true';
-    }
-    return Boolean(value);
-  })
-  newsletterSubscribed: boolean;
-
-  @ApiProperty({
-    description: 'Whether the contact accepted the privacy policy',
-    example: true,
-    default: false,
-  })
-  @IsBoolean()
-  @Transform(({ value }) => {
-    // Handle FormData booleans - they come as strings "true" or "false"
-    if (typeof value === 'string') {
-      return value.toLowerCase() === 'true';
-    }
-    return Boolean(value);
-  })
-  privacyPolicyAccepted: boolean;
+  @IsOptional()
+  @IsString()
+  companyWebsite?: string;
 
   @ApiPropertyOptional({
     description:

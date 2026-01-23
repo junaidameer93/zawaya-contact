@@ -23,7 +23,7 @@ interface UploadedFile {
 }
 
 /**
- * Service for handling Nextsense form submission business logic
+ * Service for handling Zawaya contact form submission business logic
  *
  * Responsibilities:
  * - Persist form submissions to MongoDB
@@ -71,7 +71,7 @@ export class NextsenseFormService {
 
       return {
         success: true,
-        message: 'Form submitted successfully..',
+        message: 'Form submitted successfully',
         submissionId: savedSubmission._id,
       };
     } catch (error) {
@@ -110,12 +110,12 @@ export class NextsenseFormService {
   private async syncContactToBrevo(
     submission: NextsenseFormSubmission,
   ): Promise<string | null> {
-    const contactId = await this.brevoService.createOrUpdateNextsenseContact({
-      email: submission.email,
+    const contactId = await this.brevoService.createOrUpdateZawayaContact({
+      businessEmail: submission.businessEmail,
       firstName: submission.firstName,
       lastName: submission.lastName,
-      message: submission.message,
-      newsletterSubscribed: submission.newsletterSubscribed,
+      companyProfile: submission.companyProfile,
+      companyWebsite: submission.companyWebsite,
     });
 
     if (contactId) {
@@ -146,20 +146,20 @@ export class NextsenseFormService {
   ): Promise<void> {
     const [thankYouResult, adminResult] = await Promise.all([
       this.emailService.sendThankYouEmail({
-        recipientEmail: submission.email,
+        recipientEmail: submission.businessEmail,
         firstName: submission.firstName,
         lastName: submission.lastName,
         interests: [],
-        source: 'nextsense' as ThankYouEmailSource,
+        source: 'zawaya' as ThankYouEmailSource,
       }),
       this.emailService.sendAdminNotification({
         firstName: submission.firstName,
         lastName: submission.lastName,
-        email: submission.email,
+        email: submission.businessEmail,
         interests: [],
         budget: '',
-        message: submission.message,
-        newsletterSubscribed: submission.newsletterSubscribed,
+        message: `Company Profile: ${submission.companyProfile || 'N/A'}\nCompany Website: ${submission.companyWebsite || 'N/A'}`,
+        newsletterSubscribed: false,
         submissionId: String(submission._id),
         attachments: submission.attachments,
       }),
@@ -174,4 +174,3 @@ export class NextsenseFormService {
     }
   }
 }
-

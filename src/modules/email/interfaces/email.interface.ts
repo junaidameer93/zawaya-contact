@@ -59,7 +59,7 @@ export enum EmailTemplate {
   ADMIN_NOTIFICATION = 'admin_notification',
 }
 
-export type ThankYouEmailSource = 'nextsense' | 'blockyfy';
+export type ThankYouEmailSource = 'nextsense' | 'blockyfy' | 'zawaya';
 
 /**
  * Data for thank you email template
